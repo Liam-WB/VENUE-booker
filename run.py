@@ -30,12 +30,15 @@ print(venues_data)
 
 def welcome():
     # Provide user with venue category option
-    welcome_selection = input("Please select which task you would like to execute:\n 1. Update a venue booking\n 2. Display venue maximum seats\n 3. Display venue current booked seats\n")
-    if (welcome_selection == 1):
-        collect_data()
-    elif (welcome_selection == 2):
+    welcome_selection = input("\nPlease select which task you would like to execute:\n \n 1. Update a venue booking\n 2. Display venue maximum seats\n 3. Display venue current booked seats\n \n")
+    if (welcome_selection == "1"):
+        print(f"\nYou have selected: {welcome_selection}")
+        general_functions()
+    elif (welcome_selection == "2"):
+        print(f"\nYou have selected: {welcome_selection}")
         display_max_seats()
-    elif (welcome_selection == 3):
+    elif (welcome_selection == "3"):
+        print(f"\nYou have selected: {welcome_selection}")
         display_current_seats()
     else:
         raise ValueError(
@@ -45,12 +48,12 @@ def collect_data():
     # User provides correct data & type
     # While loop
     while True:
-        print("Please provide the updated seats\n In the format:\n X, X, X, X, X, X, X, X, X")
-        seats_input = input("Provide the data below: \n")
+        print("\nPlease provide the updated seats\nIn the format:\nX, X, X, X, X, X, X")
+        seats_input = input("\nProvide the data below: \n\n")
 
         seats_list = list(seats_input.split(","))
 
-        if correct_seats(seats_list):
+        if correct_data(seats_list):
             break
 
     return seats_list
@@ -60,39 +63,41 @@ def correct_data(seats):
     # Try statement checks for correct number of data
     try:
         [int(seat) for seat in seats]
-        if len(values) != 9:
+        if len(seats) != 7:
             raise ValueError(
-                f"9 values are required - You submitted {len(seats)} values.")
+                f"A value for each of the 7 venues is required - You submitted {len(seats)} values.")
 
     except ValueError as e:
-        print(f"Invalid submission: {e}, please try again\n")
+        print(f"ERROR: {e}, please try again\n")
         return False
 
     return True
+
+def update_SS(next_row, worksheet):
+    # Function update the specified spreadsheet section, will be passed parameters in the main() function
+    print(f"Updating {SS}...\n")
+    worksheet_to_update = SS.worksheet("venues")
+
+    # adds new row to the end of the current data
+    worksheet_to_update.append_row(next_row)
+
+    print(f"{SS} worksheet updated successfully\n")
 
 
 def general_functions():
     # For all general program functions
     seats = collect_data()
     seats_list = [int(i) for i in seats]
+
+    update_SS(seats_list, "VENUE-booker-ss")
     # To add
 
 # To add worksheet update functions
 
-def display_max_seats(seats):
-    # Display a dictionary containing venue & data lists
-    venue_list = [x for x in SS.worksheet("VENUE-booker-ss").row_values(1)]
-    sseats_dictionary = dict(zip(venue_list, seats))
-    return seats_dictionary
-    
-    # To be changed
-    stock_values = get_stock_values(stock_data)
-    print(stock_values)
-    
+print("\nWelcome to VENUE booker!")
 
-def display_current_seats():
-    # To be added
+# lines to be added
 
-print("Welcome to VENUE booker!")
-# line to be added
+welcome()
 
+# linter python popup issue
