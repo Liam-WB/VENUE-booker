@@ -24,23 +24,39 @@ venues_data = venues.get_all_values()
 
 print(venues_data)
 
-# NEXT - Add efficient functions, dict() method with zip() to create dictionaries for each page of SS
+def collect_welcome():
+    # User provides correct data & type
+    # While loop exits function  if data is valid
+    while True:
+        welcome_selection = input("\nPlease select which task you would like to execute:\n \n 1. Update a venue booking\n 2. Display venue maximum seats\n 3. Display venue current booked seats\n \n")
+        datas = welcome_selection
 
-# TO CHECK vv // Issue with gspread?
+        if correct_welcome(datas):
+            break
 
-def welcome():
-    # Provide user with venue category option
-    # If statement collects
-    welcome_selection = input("\nPlease select which task you would like to execute:\n \n 1. Update a venue booking\n 2. Display venue maximum seats\n 3. Display venue current booked seats\n \n")
-    if (welcome_selection == "1"):
-        print(f"You have selected {welcome_selection}")
-    elif (welcome_selection == "2"):
-        print(f"You have selected {welcome_selection}")
-    elif (welcome_selection == "3"):
-        print(f"You have selected {welcome_selection}")
-    else:
-        print(f"ERROR: {welcome_selection} is not a valid entry. Please submit a value from 1 - 3.")
+    return welcome_selection
+
+def correct_welcome(datas):
+    # Checks if data provided is correct
+    # Try statement checks for correct number of data
+    try:
+        [str(data) for data in datas]
+        if datas == "1":
+            print(f"\nYou have selected {datas}")
+            collect_data()
+        elif datas == "2":
+            print(f"\nYou have selected {datas}")
+        elif datas == "3":
+            print(f"\nYou have selected {datas}")
+        elif datas != "1" or "2" or "3":
+            raise ValueError(
+                f"ERROR: {datas} is not a valid entry. Please submit a value from 1 - 3")
+
+    except ValueError as e:
+        print(f"ERROR: {e}, Please try again\n")
         return False
+
+    return True
 
         # make function validate and rerun
 
@@ -83,22 +99,26 @@ def update_SS(next_row, worksheet):
 
     print(f"{SS} worksheet updated successfully\n")
 
-
 def general_functions():
 
     # For all general program functions
-    welcome_data = welcome()
 
+    # Welcome section functions
+    datas = collect_welcome()
+
+    # Data collection / validation functions
     seats = collect_data()
     seats_list = [int(i) for i in seats]
 
+    # Spreadsheet update function
     update_SS(seats_list, "VENUE-booker-ss")
+
     # To add
 
-# To add worksheet update functions
-
 print("\nWelcome to VENUE booker!")
+main = general_functions()
 
+# TO CHECK vv // Issue with gspread?
 # lines to be added
 
-welcome()
+#TOMORROW - CLEAN CODE // DISPLAY PREVIOUS BOOKINGS FUNCTION // SPICE UP CODE // NO LOOSE CODE // functions can call general functions lines
