@@ -1,4 +1,4 @@
-# Imported library and credentials variable
+# Import library and credentials variable
 
 import gspread
 from google.oauth2.service_account import Credentials
@@ -30,23 +30,23 @@ print(venues_data)
 
 def welcome():
     # Provide user with venue category option
+    # If statement collects
     welcome_selection = input("\nPlease select which task you would like to execute:\n \n 1. Update a venue booking\n 2. Display venue maximum seats\n 3. Display venue current booked seats\n \n")
     if (welcome_selection == "1"):
-        print(f"\nYou have selected: {welcome_selection}")
-        general_functions()
+        print(f"You have selected {welcome_selection}")
     elif (welcome_selection == "2"):
-        print(f"\nYou have selected: {welcome_selection}")
-        display_max_seats()
+        print(f"You have selected {welcome_selection}")
     elif (welcome_selection == "3"):
-        print(f"\nYou have selected: {welcome_selection}")
-        display_current_seats()
+        print(f"You have selected {welcome_selection}")
     else:
-        raise ValueError(
-                f"ERROR: {welcome_selection} is not a valid entry.")
+        print(f"ERROR: {welcome_selection} is not a valid entry. Please submit a value from 1 - 3.")
+        return False
+
+        # make function validate and rerun
 
 def collect_data():
     # User provides correct data & type
-    # While loop
+    # While loop exits function  if data is valid
     while True:
         print("\nPlease provide the updated seats\nIn the format:\nX, X, X, X, X, X, X")
         seats_input = input("\nProvide the data below: \n\n")
@@ -85,7 +85,10 @@ def update_SS(next_row, worksheet):
 
 
 def general_functions():
+
     # For all general program functions
+    welcome_data = welcome()
+
     seats = collect_data()
     seats_list = [int(i) for i in seats]
 
@@ -99,5 +102,3 @@ print("\nWelcome to VENUE booker!")
 # lines to be added
 
 welcome()
-
-# linter python popup issue
