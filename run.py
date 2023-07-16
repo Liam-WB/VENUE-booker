@@ -14,13 +14,7 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SS = GSPREAD_CLIENT.open("VENUE-booker-ss")
 
-# TEMP CODE - Shows that api and Google sheet are connected
-
-venues = SS.worksheet("venues")
-
-venues_data = venues.get_all_values()
-
-print(venues_data)
+# WELCOME SECTION
 
 def collect_welcome():
     # User provides correct data & type
@@ -51,7 +45,7 @@ def correct_welcome(datas):
 
     return True
 
-        # make function validate and rerun
+# DATA INPUT SECTION
 
 def collect_data():
     # User provides correct data & type
@@ -111,7 +105,6 @@ def general_functions():
 print("\nWelcome to VENUE booker!")
 main = general_functions()
 
-# TO CHECK vv // Issue with gspread?
-# lines to be added
+# TO CHECK vv // Issue with gspread
 
 #TOMORROW - CLEAN CODE // DISPLAY PREVIOUS BOOKINGS FUNCTION // SPICE UP CODE // NO LOOSE CODE // functions can call general functions lines
