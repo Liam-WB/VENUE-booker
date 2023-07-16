@@ -1,5 +1,3 @@
-# Import library and credentials variable
-
 import gspread
 from google.oauth2.service_account import Credentials
 
@@ -28,7 +26,7 @@ def collect_welcome():
     # User provides correct data & type
     # While loop exits function  if data is valid
     while True:
-        welcome_selection = input("\nPlease select which task you would like to execute:\n \n 1. Update a venue booking\n 2. Display venue maximum seats\n 3. Display venue current booked seats\n \n")
+        welcome_selection = input("\nPlease select which task you would like to execute:\n \n 1. Update venue booking\n 2. Display previous entry\n 3. Display venue current booked seats\n 4. Display venue maximum seats\n \n")
         datas = welcome_selection
 
         if correct_welcome(datas):
@@ -41,16 +39,11 @@ def correct_welcome(datas):
     # Try statement checks for correct number of data
     try:
         [str(data) for data in datas]
-        if datas == "1":
+        if datas == "1" or "2" or "3" or "4":
             print(f"\nYou have selected {datas}")
-            collect_data()
-        elif datas == "2":
-            print(f"\nYou have selected {datas}")
-        elif datas == "3":
-            print(f"\nYou have selected {datas}")
-        elif datas != "1" or "2" or "3":
+        else:
             raise ValueError(
-                f"ERROR: {datas} is not a valid entry. Please submit a value from 1 - 3")
+                f"ERROR: {datas} is not a valid entry. Please submit a value from 1 - 4")
 
     except ValueError as e:
         print(f"ERROR: {e}, Please try again\n")
@@ -91,7 +84,7 @@ def correct_data(seats):
 
 def update_SS(next_row, worksheet):
     # Function update the specified spreadsheet section, will be passed parameters in the main() function
-    print(f"Updating {SS}...\n")
+    print(f"\nUpdating {SS}...\n")
     worksheet_to_update = SS.worksheet("venues")
 
     # adds new row to the end of the current data
@@ -105,10 +98,10 @@ def general_functions():
 
     # Welcome section functions
     datas = collect_welcome()
-
-    # Data collection / validation functions
-    seats = collect_data()
-    seats_list = [int(i) for i in seats]
+    if datas == "1":
+        # Data collection / validation functions
+        seats = collect_data()
+        seats_list = [int(i) for i in seats]
 
     # Spreadsheet update function
     update_SS(seats_list, "VENUE-booker-ss")
