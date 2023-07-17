@@ -84,22 +84,10 @@ def correct_data(seats):
 
 # DISPLAY f's SECTION
 
-def display_row_values(display):
-    # Display the specified row values and return a dictionary with venue names & booking amounts
-    # last_row_updated = venues page last updated row (found by length of the column values)
-    venues = SS.worksheet("venues").row_values(1)
-    last_row_updated = SS.worksheet("venues").row_values(len(SS.worksheet("venues").col_values(1)))
-    last_five_rows =  SS.worksheet("venues").row_values((len(SS.worksheet("venues").col_values(1))-3))
-
-    if display == "1":
-        return last_row_updated
-    elif display == "2":
-        return last_five_rows
-
 def collect_display():
     # Input for what specific (validated) information user wants to display
     while True:
-        display_option = input("\nPlease select which information you would like to view:\n \n 1. Last updated row\n 2. Last 5 updated rows\n 3. All spreadsheet values\n 4. Custom / Specific row\n \n")
+        display_option = input("\nPlease select which booking(s) you would like to view:\n \n 1. Last updated row\n 2. Last 5 updated rows\n 3. All spreadsheet values\n 4. Custom / Specific row\n \n")
         display = display_option
 
         if correct_display(display):
@@ -110,13 +98,13 @@ def collect_display():
 def correct_display(display):
     try:
         if display == "1":
-            print(f"\nYou have selected {display}")
+            print(f"\nYou have selected the last updated booking row:")
         elif display == "2":
-            print(f"\nYou have selected {display}")
+            print(f"\nYou have selected the last 5 updated booking rows:")
         elif display == "3":
-            print(f"\nYou have selected {display}")
+            print(f"\nYou have selected all listed spreadsheet values:")
         elif display == "4":
-            print(f"\nYou have selected {display}")
+            print(f"\nYou have selected a specific booking row:")
         else:
             raise ValueError(
                 f"{display} is not a valid entry. Please submit a value from 1 - 4")
@@ -126,6 +114,32 @@ def correct_display(display):
         return False
 
     return True
+
+def display_row_values(display):
+    # Display the specified row values and return a dictionary with venue names & booking amounts
+    # last_row_updated = venues page last updated row (found by length of the column values)
+
+    # VARIABLES
+    # Call worksheet
+    venues = SS.worksheet("venues").row_values(1)
+    # Call row numbers
+    last_row_updated = SS.worksheet("venues").row_values(len(SS.worksheet("venues").col_values(1)))
+    second_row_updated = SS.worksheet("venues").row_values((len(SS.worksheet("venues").col_values(1))-1))
+    third_row_updated = SS.worksheet("venues").row_values((len(SS.worksheet("venues").col_values(1))-2))
+    fourth_row_updated = SS.worksheet("venues").row_values((len(SS.worksheet("venues").col_values(1))-3))
+    fifth_row_updated = SS.worksheet("venues").row_values((len(SS.worksheet("venues").col_values(1))-4))
+    headings = SS.worksheet("venues").row_values(1)
+    # Create dictionary from row variables and venue names (using zip method)
+    last_dict = dict(zip(headings, last_row_updated))
+    second_dict = dict(zip(headings, second_row_updated))
+    third_dict = dict(zip(headings, third_row_updated))
+    fourth_dict = dict(zip(headings, fourth_row_updated))
+    fifth_dict = dict(zip(headings, fifth_row_updated))
+
+    if display == "1":
+        print(last_dict)
+    elif display == "2":
+        print(f"\n{last_dict}\n{second_dict}\n{third_dict}\n{fourth_dict}\n{fifth_dict}")
 
 # UPDATE SECTION
 
