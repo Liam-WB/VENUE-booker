@@ -18,7 +18,7 @@ SS = GSPREAD_CLIENT.open("VENUE-booker-ss")
 
 def collect_welcome():
     # User provides correct data & type
-    # While loop exits function  if data is valid
+    # While loop exits f if data is valid
     while True:
         welcome_selection = input("\nPlease select which task you would like to execute:\n \n 1. Update venue booking\n 2. Display previous entry\n 3. Display venue current booked seats\n 4. Display venue maximum seats\n \n")
         datas = welcome_selection
@@ -55,7 +55,7 @@ def correct_welcome(datas):
 
 def collect_data():
     # User provides correct data & type
-    # While loop exits function  if data is valid
+    # While loop exits f if data is valid
     while True:
         print("\nPlease provide the updated seats\nIn the format:\nX, X, X, X, X, X, X")
         seats_input = input("\nProvide the data below: \n\n")
@@ -82,35 +82,59 @@ def correct_data(seats):
 
     return True
 
+# DISPLAY f's SECTION
+
+def display_row_values():
+    # Display the specified row values and return a dictionary with venue names & booking amounts
+    # last_row_updated = venues page last updated row (found by length of the column values)
+    venues = SS.worksheet("venues").row_values(1)
+    last_row_updated = SS.worksheet("venues").row_values(len(SS.worksheet("venues").col_values(1)))
+
+def display_selection():
+    # Input for what specific information user wants to display
+    while True:
+        display_option = input("\nPlease select which information you would like to view:\n \n 1. Last updated row\n 2. Last 5 updated rows\n 3. All spreadsheet values\n 4. Custom / Specific row\n \n")
+        
+        if correct_display_value():
+            break
+
+    return display_option
+
+# UPDATE SECTION
+
 def update_SS(next_row, worksheet):
-    # Function update the specified spreadsheet section, will be passed parameters in the main() function
+    # Update the specified spreadsheet section, will be passed parameters in main()
     print(f"\nUpdating {SS}...\n")
     worksheet_to_update = SS.worksheet("venues")
 
-    # adds new row to the end of the current data
+    # Adds new row to the end of the current data
     worksheet_to_update.append_row(next_row)
 
     print(f"{SS} worksheet updated successfully\n")
 
+# MAIN
+
 def general_functions():
 
-    # For all general program functions
+    # For all general program f's
 
-    # Welcome section functions
+    # Welcome section f's
     datas = collect_welcome()
     if datas == "1":
-        # Data collection / validation functions
+        # Data collection / validation f's
         seats = collect_data()
         seats_list = [int(i) for i in seats]
+
+    # UPDATE f CALLING SECTION
 
     # Spreadsheet update function
     update_SS(seats_list, "VENUE-booker-ss")
 
-    # To add
+# RUN PROGRAM
 
 print("\nWelcome to VENUE booker!")
 main = general_functions()
 
-# TO CHECK vv // Issue with gspread
+# TO CHECK ~~ Issue with gspread
 
 #TOMORROW - CLEAN CODE // DISPLAY PREVIOUS BOOKINGS FUNCTION // SPICE UP CODE // NO LOOSE CODE // functions can call general functions lines
