@@ -33,7 +33,13 @@ def correct_welcome(datas):
     # Try statement checks for correct number of data
     try:
         [str(data) for data in datas]
-        if datas == "1" or "2" or "3" or "4":
+        if datas == "1":
+            print(f"\nYou have selected {datas}")
+        elif datas == "2":
+            print(f"\nYou have selected {datas}")
+        elif datas == "3":
+            print(f"\nYou have selected {datas}")
+        elif datas == "4":
             print(f"\nYou have selected {datas}")
         else:
             raise ValueError(
