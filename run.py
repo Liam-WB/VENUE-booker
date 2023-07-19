@@ -115,20 +115,18 @@ def correct_display(display):
 
     return True
 
-def display_row_values(display):
+def display_row_values(display, worksheet):
     # Display the specified row values and return a dictionary with venue names & booking amounts
     # last_row_updated = venues page last updated row (found by length of the column values)
 
     # VARIABLES
-    # Call worksheet
-    venues = SS.worksheet("venues").row_values(1)
-    # Call row numbers
-    last_row_updated = SS.worksheet("venues").row_values(len(SS.worksheet("venues").col_values(1)))
-    second_row_updated = SS.worksheet("venues").row_values((len(SS.worksheet("venues").col_values(1))-1))
-    third_row_updated = SS.worksheet("venues").row_values((len(SS.worksheet("venues").col_values(1))-2))
-    fourth_row_updated = SS.worksheet("venues").row_values((len(SS.worksheet("venues").col_values(1))-3))
-    fifth_row_updated = SS.worksheet("venues").row_values((len(SS.worksheet("venues").col_values(1))-4))
-    headings = SS.worksheet("venues").row_values(1)
+    # Call SS row numbers
+    last_row_updated = SS.worksheet(worksheet).row_values(len(SS.worksheet(worksheet).col_values(1)))
+    second_row_updated = SS.worksheet(worksheet).row_values((len(SS.worksheet(worksheet).col_values(1))-1))
+    third_row_updated = SS.worksheet(worksheet).row_values((len(SS.worksheet(worksheet).col_values(1))-2))
+    fourth_row_updated = SS.worksheet(worksheet).row_values((len(SS.worksheet(worksheet).col_values(1))-3))
+    fifth_row_updated = SS.worksheet(worksheet).row_values((len(SS.worksheet(worksheet).col_values(1))-4))
+    headings = SS.worksheet(worksheet).row_values(1)
     # Create dictionary from row variables and venue names (using zip method)
     last_dict = dict(zip(headings, last_row_updated))
     second_dict = dict(zip(headings, second_row_updated))
@@ -152,7 +150,7 @@ def display_row_values(display):
 def update_SS(next_row, worksheet):
     # Update the specified spreadsheet section, will be passed parameters in main()
     print(f"\nUpdating {SS}...\n")
-    worksheet_to_update = SS.worksheet("venues")
+    worksheet_to_update = SS.worksheet(worksheet)
 
     # Adds new row to the end of the current data
     worksheet_to_update.append_row(next_row)
@@ -173,13 +171,13 @@ def general_functions():
         seats_list = [int(i) for i in seats]
         # UPDATE f CALLING SECTION
         # Spreadsheet update function
-        update_SS(seats_list, "VENUE-booker-ss")
+        update_SS(seats_list, "venues")
     elif datas == "2" or "3" or "4":
         # DISPLAY f SECTION
         display = collect_display()
-        
+
     if datas == "2":
-            display_row_values(display)
+            display_row_values(display, "venues")
 
 # RUN PROGRAM
 
