@@ -20,7 +20,7 @@ def collect_welcome():
     # User provides correct data & type
     # While loop exits f if data is valid
     while True:
-        welcome_selection = input("\nPlease select which task you would like to execute:\n \n 1. Update venue booking\n 2. Display previous entry\n 3. Display venue current booked seats\n 4. Display venue maximum seats\n \n")
+        welcome_selection = input("\nPlease select which task you would like to execute:\n \n 1. Update venue booking\n 2. Display a previous entry\n 3. Display an entry's remaining seats\n 4. Display venue average booking amounts\n \n")
         datas = welcome_selection
 
         if correct_welcome(datas):
@@ -98,11 +98,11 @@ def collect_display():
 def correct_display(display):
     try:
         if display == "1":
-            print(f"\nYou have selected the last updated booking row:\n")
+            print(f"\nDisplaying last submitted data...\n")
         elif display == "2":
-            print(f"\nYou have selected the last 5 updated booking rows:\n")
+            print(f"\nDisplaying last 5 submissions in order of most recent...\n")
         elif display == "3":
-            print(f"\nYou have selected all listed spreadsheet values:\n")
+            print(f"\nDisplaying all spreadsheet data...\n")
         elif display == "4":
             print(f"\nYou have selected a specific booking row:\n")
         else:
@@ -145,6 +145,33 @@ def display_row_values(display, worksheet):
         for row in rows:
             print(dict(zip(headings, row)))
 
+def collect_custom(worksheet):
+    # Input for what specific (validated) information user wants to display
+    while True:
+        custom_option = input("\nPlease input a number of row which you would like to view:\n \n")
+        custom = custom_option
+
+        if correct_custom(custom, worksheet):
+            break
+
+    return custom_option
+
+def correct_custom(custom, worksheet):
+    rows = SS.worksheet(worksheet).get_all_values()
+    valid_rows = [row for row in rows]
+    try:
+        if custom in valid_rows:
+            raise ValueError(
+                f"{custom} is not a valid row number from {worksheet}")
+        else:
+            print("Displaying selected data...")
+
+    except ValueError as e:
+        print(f"ERROR: {e}, Please try again\n")
+        return False
+
+    return True
+
 # UPDATE SECTION
 
 def update_SS(next_row, worksheet):
@@ -178,6 +205,11 @@ def general_functions():
 
     if datas == "2":
             display_row_values(display, "venues")
+            if display == "4":
+                custom = collect_custom("venues")
+                print(dict(zip(SS.worksheet("venues").row_values(1), SS.worksheet("venues").row_values(custom))))
+    #elif datas == "3":
+
 
 # RUN PROGRAM
 
