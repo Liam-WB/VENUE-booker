@@ -98,13 +98,13 @@ def collect_display():
 def correct_display(display):
     try:
         if display == "1":
-            print(f"\nYou have selected the last updated booking row:")
+            print(f"\nYou have selected the last updated booking row:\n")
         elif display == "2":
-            print(f"\nYou have selected the last 5 updated booking rows:")
+            print(f"\nYou have selected the last 5 updated booking rows:\n")
         elif display == "3":
-            print(f"\nYou have selected all listed spreadsheet values:")
+            print(f"\nYou have selected all listed spreadsheet values:\n")
         elif display == "4":
-            print(f"\nYou have selected a specific booking row:")
+            print(f"\nYou have selected a specific booking row:\n")
         else:
             raise ValueError(
                 f"{display} is not a valid entry. Please submit a value from 1 - 4")
@@ -136,10 +136,16 @@ def display_row_values(display):
     fourth_dict = dict(zip(headings, fourth_row_updated))
     fifth_dict = dict(zip(headings, fifth_row_updated))
 
+    # If statement dictates what data/variable is displayed
     if display == "1":
         print(last_dict)
     elif display == "2":
         print(f"\n{last_dict}\n{second_dict}\n{third_dict}\n{fourth_dict}\n{fifth_dict}")
+    elif display == "3":
+        # For loop loops through rows number in SS and creates a dictionary for each item, linked to "headings" variable
+        rows = SS.worksheet("venues").get_all_values()
+        for row in rows:
+            print(dict(zip(headings, row)))
 
 # UPDATE SECTION
 
@@ -171,6 +177,7 @@ def general_functions():
     elif datas == "2" or "3" or "4":
         # DISPLAY f SECTION
         display = collect_display()
+        
     if datas == "2":
             display_row_values(display)
 
