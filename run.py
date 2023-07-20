@@ -136,17 +136,14 @@ def display_row_values(display, worksheet):
 
     # If statement dictates what data/variable is displayed
     if display == "1":
-        print(last_dict)
         return last_dict
     elif display == "2":
-        print(f"\n{last_dict}\n{second_dict}\n{third_dict}\n{fourth_dict}\n{fifth_dict}")
         return f"\n{last_dict}\n{second_dict}\n{third_dict}\n{fourth_dict}\n{fifth_dict}"
     elif display == "3":
         # For loop loops through rows number in SS and creates a dictionary for each item, linked to "headings" variable
         rows = SS.worksheet("venues").get_all_values()
         for row in rows:
             all = dict(zip(headings, row))
-            print(all)
         return all
 
 def collect_custom(worksheet):
@@ -175,6 +172,25 @@ def correct_custom(custom, worksheet):
         return False
 
     return True
+
+# REMAINING SECTION
+
+def calculate_remaining(display):
+    keys = display_row_values(display, "venues")
+    # Create list of only integers
+    print("Creating data list...\n")
+    keys_list = [i for i in keys.values()]
+    # Calculate remaining seats
+    print("\nCalculating remaining seats...\n")
+    # Convert list items to int
+    max_seats = [int(i) for i in SS.worksheet("remaining_seats").row_values(2)]
+    keys_list = [int(i) for i in keys_list]
+    headings = SS.worksheet("remaining_seats").row_values(1)
+    remaining_seats = []
+    for i, j in zip(max_seats, keys_list):
+        remaining_seats.append(i - j)
+    remaining_final = dict(zip(headings, remaining_seats))
+    print(remaining_final)
 
 # UPDATE SECTION
 
@@ -208,26 +224,12 @@ def general_functions():
         display = collect_display()
 
     if datas == "2":
-        display_row_values(display, "venues")
+        print(display_row_values(display, "venues"))
         if display == "4":
             custom = collect_custom("venues")
             print(dict(zip(SS.worksheet("venues").row_values(1), SS.worksheet("venues").row_values(custom))))
     elif datas == "3":
-        # TEMP
-        value = display_row_values(display, "venues")
-        # Create list of only integers
-        item_list = []
-        for x in zip(value.values()):
-            if x == int:
-                item_list.append((x))
-        
-        return item_list
-        print(item_list)
-
-        remaining_seats = []
-        for i, j in zip(SS.worksheet("remaining_seats").row_values(2), item_list):
-            remaining_seats.append(i - j)
-        print(remaining_seats)
+        remaining_final = calculate_remaining(display)
 
     #    if display == "4":
     #        custom = collect_custom("venues")
