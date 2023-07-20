@@ -138,7 +138,7 @@ def display_row_values(display, worksheet):
     if display == "1":
         return last_dict
     elif display == "2":
-        return f"\n{last_dict}\n{second_dict}\n{third_dict}\n{fourth_dict}\n{fifth_dict}"
+        return last_dict, second_dict, third_dict, fourth_dict, fifth_dict
     elif display == "3":
         # For loop loops through rows number in SS and creates a dictionary for each item, linked to "headings" variable
         rows = SS.worksheet("venues").get_all_values()
@@ -165,7 +165,7 @@ def correct_custom(custom, worksheet):
             raise ValueError(
                 f"{custom} is not a valid row number from {worksheet}")
         else:
-            print("Displaying selected data...")
+            print("\nDisplaying selected data...\n")
 
     except ValueError as e:
         print(f"ERROR: {e}, Please try again\n")
@@ -177,9 +177,11 @@ def correct_custom(custom, worksheet):
 
 def calculate_remaining(display):
     keys = display_row_values(display, "venues")
+    print(keys)
+    #keys = [key for key in keys]
     # Create list of only integers
     print("Creating data list...\n")
-    keys_list = [i for i in keys.values()]
+    keys_list = list(keys.values()) 
     # Calculate remaining seats
     print("\nCalculating remaining seats...\n")
     # Convert list items to int
@@ -204,6 +206,16 @@ def update_SS(next_row, worksheet):
 
     print(f"{SS} worksheet updated successfully\n")
 
+def update_remaining(next_row, worksheet):
+    # Update the specified spreadsheet section, will be passed parameters in main()
+    print(f"\nUpdating {SS}...\n")
+    worksheet_to_update = SS.worksheet(worksheet)
+
+    # Adds new row to the end of the current data
+    worksheet_to_update.append_row(next_row)
+
+    print(f"{SS} worksheet updated successfully\n")
+
 # MAIN
 
 def general_functions():
@@ -217,8 +229,15 @@ def general_functions():
         seats = collect_data()
         seats_list = [int(i) for i in seats]
         # UPDATE f CALLING SECTION
-        # Spreadsheet update function
+        # Spreadsheet update f
         update_SS(seats_list, "venues")
+        # Remaining seats update f
+        max_seats = [int(i) for i in SS.worksheet("remaining_seats").row_values(2)]
+        headings = SS.worksheet("remaining_seats").row_values(1)
+        remaining_seats = []
+        for i, j in zip(max_seats, seats_list):
+            remaining_seats.append(i - j)
+        update_remaining(remaining_seats, "remaining_seats")
     elif datas == "2" or "3" or "4":
         # DISPLAY f SECTION
         display = collect_display()
@@ -229,17 +248,18 @@ def general_functions():
             custom = collect_custom("venues")
             print(dict(zip(SS.worksheet("venues").row_values(1), SS.worksheet("venues").row_values(custom))))
     elif datas == "3":
-        remaining_final = calculate_remaining(display)
-
-    #    if display == "4":
-    #        custom = collect_custom("venues")
-    #        print(dict(zip(SS.worksheet("venues").row_values(1), SS.worksheet("venues").row_values(custom))))
+        if display == "1":
+            remaining_final = calculate_remaining(display)
+        elif display == "2":
+            remaining_final = calculate_remaining(display)
+        if display == "4":
+            custom = collect_custom("remaining_seats")
+            print(dict(zip(SS.worksheet("remaining_seats").row_values(1), SS.worksheet("remaining_seats").row_values(custom))))
 
 # RUN PROGRAM
-
 print("\nWelcome to VENUE booker!")
 main = general_functions()
 
 # TO CHECK ~~ Issue with gspread
-
-#TOMORROW - CLEAN CODE // DISPLAY PREVIOUS BOOKINGS FUNCTION // SPICE UP CODE // NO LOOSE CODE // functions can call general functions lines
+# SPICE UP CODE // NO LOOSE CODE
+# NONE POPPING UP WHEN TYPE TOO FAST, 2, 4, specific
