@@ -234,7 +234,7 @@ def calculate_remaining(display):
         remaining_final = final_a, final_b, final_c, final_d, final_e
         return remaining_final
     elif display == "3":
-        # For loop loops through rows number in SS and creates a dictionary for each item, linked to "headings" variable
+        # For loop loops through row numbers in SS and creates a dictionary for each item, linked to "headings" variable
         rows = SS.worksheet("remaining_seats").get_all_values()
         headings = SS.worksheet("remaining_seats").row_values(1)
         rows.pop(0)
@@ -242,6 +242,65 @@ def calculate_remaining(display):
         for row in rows:
             all.append(dict(zip(headings, row)))
         return all
+
+# CALCULATE AVERAGE SECTION
+
+def calc_av_seats():
+    #
+    print("Calculating current venue average seats...")
+    # Values sorted into int only, then added up and divided to find mean average
+    # Globe Theatre
+    col_one = SS.worksheet("venues").col_values(1)
+    col_one.pop(0)
+    venue_one = 0
+    for value in col_one:
+        venue_one = venue_one + int(value)
+    venue_one = venue_one / (len(SS.worksheet("venues").col_values(1)) - 1)
+    # Sydney Opera House
+    col_two = SS.worksheet("venues").col_values(2)
+    col_two.pop(0)
+    venue_two = 0
+    for value in col_two:
+        venue_two = venue_two + int(value)
+    venue_two = venue_two / (len(SS.worksheet("venues").col_values(1)) - 1)
+    # Alexandra Palace
+    col_three = SS.worksheet("venues").col_values(3)
+    col_three.pop(0)
+    venue_three = 0
+    for value in col_three:
+        venue_three = venue_three + int(value)
+    venue_three = venue_three / (len(SS.worksheet("venues").col_values(1)) - 1)
+    # Madison Square Garden
+    col_four = SS.worksheet("venues").col_values(4)
+    col_four.pop(0)
+    venue_four = 0
+    for value in col_four:
+        venue_four = venue_four + int(value)
+    venue_four = venue_four / (len(SS.worksheet("venues").col_values(1)) - 1)
+    # O2 Arena
+    col_five = SS.worksheet("venues").col_values(5)
+    col_five.pop(0)
+    venue_five = 0
+    for value in col_five:
+        venue_five = venue_five + int(value)
+    venue_five = venue_five / (len(SS.worksheet("venues").col_values(1)) - 1)
+    # Colosseum
+    col_six = SS.worksheet("venues").col_values(6)
+    col_six.pop(0)
+    venue_six = 0
+    for value in col_six:
+        venue_six = venue_six + int(value)
+    venue_six = venue_six / (len(SS.worksheet("venues").col_values(1)) - 1)
+    # Wembley Stadium
+    col_seven = SS.worksheet("venues").col_values(7)
+    col_seven.pop(0)
+    venue_seven = 0
+    for value in col_seven:
+        venue_seven = venue_seven + int(value)
+    venue_seven = venue_seven / (len(SS.worksheet("venues").col_values(1)) - 1)
+
+    print(f"\nThe current averages for each venue are as follows:\n\nGlobe Theatre: {round(venue_one)}\nSydney Opera House: {round(venue_two)}\nAlexandra Palace: {round(venue_three)}\nMadison Square Garden: {round(venue_four)}\nO2 Arena: {round(venue_five)}\nColosseum: {round(venue_six)}\nWembley Stadium: {round(venue_seven)}")
+    
 
 # UPDATE SECTION
 
@@ -265,6 +324,39 @@ def update_remaining(next_row, worksheet):
 
     print(f"{SS} worksheet updated successfully\n")
 
+# RERUN PROGRAM f
+
+
+def collect_rerun():
+    # f for restarting program if user is unfinished with tasks
+    while True:
+        print("\nPlease select wether you would like to exit program or go back to selection")
+        rerun_input = input("\nType 'exit' to end program or 'back' to go back:\n\n")
+        rerun = rerun_input
+
+        if correct_rerun(rerun):
+            break
+
+    return rerun_input
+
+def correct_rerun(rerun):
+    # Checks if data provided is correct
+    # Try statement checks for correct number of data
+    try:
+        if rerun == "back":
+            general_functions()
+        elif rerun == "exit":
+            print("Exiting program...")
+        else:
+            raise ValueError(
+                f"You did not submit 'exit' or 'back', you submitted {rerun}")
+
+    except ValueError as e:
+        print(f"ERROR: {e}, please try again\n")
+        return False
+
+    return True
+
 # MAIN
 
 def general_functions():
@@ -287,6 +379,9 @@ def general_functions():
         for i, j in zip(max_seats, seats_list):
             remaining_seats.append(i - j)
         update_remaining(remaining_seats, "remaining_seats")
+    # AVERAGE SEAT f SECTION
+    elif datas == "4":
+        calc_av_seats()
     elif datas == "2" or "3":
         # DISPLAY f SECTION
         display = collect_display()
@@ -300,15 +395,18 @@ def general_functions():
         elif datas == "3":
             if display == "1" or "2" or "3":
                 remaining_final = calculate_remaining(display)
-                print(remaining_final)
+                if remaining_final != None:
+                    print(remaining_final)
             if display == "4":
                 custom = collect_custom("remaining_seats")
                 print(dict(zip(SS.worksheet("remaining_seats").row_values(1), SS.worksheet("remaining_seats").row_values(custom))))
+    # RERUN f SECTION
+    rerun = collect_rerun()
+
 
 # RUN PROGRAM
 print("\nWelcome to VENUE booker!")
 main = general_functions()
 
+
 # TO CHECK ~~ Issue with gspread
-# SPICE UP CODE // NO LOOSE CODE
-# NONE POPPING UP WHEN TYPE TOO FAST, 2, 4, specific
