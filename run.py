@@ -146,8 +146,7 @@ def display_row_values(display, worksheet):
         all = []
         for row in rows:
             all.append(dict(zip(headings, row)))
-            return all
-        print(all)
+        return all
 
 def collect_custom(worksheet):
     # Input for what specific (validated) information user wants to display
@@ -237,7 +236,6 @@ def calculate_remaining(display):
     elif display == "3":
         # For loop loops through rows number in SS and creates a dictionary for each item, linked to "headings" variable
         rows = SS.worksheet("remaining_seats").get_all_values()
-        print(rows)
         headings = SS.worksheet("remaining_seats").row_values(1)
         rows.pop(0)
         all = []
