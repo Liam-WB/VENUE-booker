@@ -183,11 +183,11 @@ def calculate_remaining(display):
         # Create list of only integers
         print("Creating data list...\n")
         keys_list = list(keys.values()) 
-        # Calculate remaining seats
         print("Calculating remaining seats...\n")
         # Convert list items to int
         max_seats = [int(i) for i in SS.worksheet("remaining_seats").row_values(2)]
         keys_list = [int(i) for i in keys_list]
+        # Calculate remaining seats
         headings = SS.worksheet("remaining_seats").row_values(1)
         remaining_seats = []
         for i, j in zip(max_seats, keys_list):
@@ -196,7 +196,6 @@ def calculate_remaining(display):
         return remaining_final
     elif display == "2":
         # Step by step copy of above process
-        # **Could create function for efficient remaining seats calculation process for multiple data rows
         a, b, c, d, e = display_row_values(display, "venues")
         a = [int(val) for val in a.values()]
         b = [int(val) for val in b.values()]
@@ -298,14 +297,14 @@ def calc_av_seats():
     for value in col_seven:
         venue_seven = venue_seven + int(value)
     venue_seven = venue_seven / (len(SS.worksheet("venues").col_values(1)) - 1)
-
+    # Print result
     print(f"\nThe current averages for each venue are as follows:\n\nGlobe Theatre: {round(venue_one)}\nSydney Opera House: {round(venue_two)}\nAlexandra Palace: {round(venue_three)}\nMadison Square Garden: {round(venue_four)}\nO2 Arena: {round(venue_five)}\nColosseum: {round(venue_six)}\nWembley Stadium: {round(venue_seven)}")
     
 
 # UPDATE SECTION
 
 def update_SS(next_row, worksheet):
-    # Update the specified spreadsheet section, will be passed parameters in main()
+    # Update the specified spreadsheet section, will be passed parameters in general_functions
     print(f"\nUpdating {SS}...\n")
     worksheet_to_update = SS.worksheet(worksheet)
 
@@ -324,7 +323,7 @@ def update_remaining(next_row, worksheet):
 
     print(f"{SS} worksheet updated successfully\n")
 
-# RERUN PROGRAM f
+# RERUN PROGRAM SECTION
 
 
 def collect_rerun():
@@ -369,7 +368,7 @@ def general_functions():
         # Data collection / validation f's
         seats = collect_data()
         seats_list = [int(i) for i in seats]
-        # UPDATE f CALLING SECTION
+        # UPDATE f SECTION
         # Spreadsheet update f
         update_SS(seats_list, "venues")
         # Remaining seats update f
@@ -407,6 +406,3 @@ def general_functions():
 # RUN PROGRAM
 print("\nWelcome to VENUE booker!")
 main = general_functions()
-
-
-# TO CHECK ~~ Issue with gspread
