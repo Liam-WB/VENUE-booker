@@ -22,7 +22,7 @@ Common in most business data sorting tools, the user is greeted by the option to
 
 To start, I created an initial algorithm flowchart for how I wanted the program to work with [LucidChart](https://www.lucidchart.com/pages/landing?utm_source=google&utm_medium=cpc&utm_campaign=_chart_en_tier1_mixed_search_brand_exact_&km_CPC_CampaignId=1490375427&km_CPC_AdGroupID=55688909257&km_CPC_Keyword=lucidchart&km_CPC_MatchType=e&km_CPC_ExtensionID=&km_CPC_Network=g&km_CPC_AdPosition=&km_CPC_Creative=442433236007&km_CPC_TargetID=kwd-33511936169&km_CPC_Country=9046005&km_CPC_Device=c&km_CPC_placement=&km_CPC_target=&gclid=Cj0KCQjw_O2lBhCFARIsAB0E8B_BaaAGk7Ben2kChMf8S1KV5f3g7B3NYORCOd_w1lS_bkhpwTGKf1caAl4VEALw_wcB)
 
-[Flowchart](md_images/Flowcharts.png)
+[Flowchart](md_images/flowcharts.png)
 
 I used this as a floor plan for the app, and then added and removed features where appropriate.
 
@@ -42,17 +42,17 @@ Lastly, the user is given the option to check each venue's current average booki
 ### Existing Features
 
  - Multiple choice data management
-  - Simple, straigtforward choices / instructions
-  - User input validation, returns error, what user typed and what counts as valid input
-  - Program will return same error messages until the user inputs the correct data type
+    - Simple, straigtforward choices / instructions
+    - User input validation, returns error, what user typed and what counts as valid input
+    - Program will return same error messages until the user inputs the correct data type
 
  - Updates external google sheet with user inputs (booking datasets for individual venues)
-  - Automatically calculates remaining seats from input dataset
-  - Automatically updates seperate sheet in the spreadsheet for remaining seats
+    - Automatically calculates remaining seats from input dataset
+    - Automatically updates seperate sheet in the spreadsheet for remaining seats
 
  - User is given the option on what data they would like to pull from the external file as well as how much data
-  - User is given the option to pick a specific dataset to pull from the spreadsheet if they prefer
-  - Program can display any value in the spreadsheet
+    - User is given the option to pick a specific dataset to pull from the spreadsheet if they prefer
+    - Program can display any value in the spreadsheet
 
  - User is given the option to review mean average of each venue
 
@@ -70,9 +70,9 @@ Lastly, the user is given the option to check each venue's current average booki
 I decided to create functions for each of the task processes including:
 
  - Collecting user inputs
-  - Using if statements to dictate what function will be called next
+    - Using if statements to dictate what function will be called next
  - Validating user inputs
-  - Using While loops to insure that the function only moves on when correct data is input
+    - Using While loops to insure that the function only moves on when correct data is input
  
  - Update functions also use parameters (like worksheet names) to avoid long code, and create a more efficient and smooth user experience
 
@@ -106,7 +106,7 @@ I've tested the project in the Heroku terminal and my local terminal, validated 
 ### Validator testing
 
  - [PEP8 checker](https://www.pythonchecker.com/)
-  - No major issues found.
+    - No major issues found.
 
 ## Deployment
 ---
@@ -114,14 +114,14 @@ I've tested the project in the Heroku terminal and my local terminal, validated 
 This project was deployed using Code Institute's mock terminal on Heroku
 
  - Steps for deployment:
-  - Fork / clone repository
-  - Create new Heroku app
-  - Configure vars
-  - Set the buildbacks in order Python, Node.JS
-  - Link the app to the repository
-  - Deploy to main branch
+    - Fork / clone repository
+    - Create new Heroku app
+    - Configure vars
+    - Set the buildbacks in order Python, Node.JS
+    - Link the app to the repository
+    - Deploy to main branch
 
-## Credits / Referncing
+## Credits / Referencing
 ---
 
  - Code institute for the deployment terminal
