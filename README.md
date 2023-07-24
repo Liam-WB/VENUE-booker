@@ -1,16 +1,12 @@
 ## Reminders
 # VENUE Booker
 
-IMG!
+![Responsiveness](md_images/responsive.png)
 
 VENUE-Booker is a command-line data-management application, which runs via the code institute mock terminal on Heroku. Users can input, sort, replace and view common datasets in the form of venue seat booking amounts, stored and updated externally via a google spreadsheet.
 
 ## [Live Website Link (GitHub Pages)](liam-wb.github.io/quizology/)
 ---
-
-# Directory
-
-- [VENUE-Booker](#VENUE_Booker)
 
 ## How to use
 ---
@@ -22,12 +18,14 @@ Common in most business data sorting tools, the user is greeted by the option to
 
 To start, I created an initial algorithm flowchart for how I wanted the program to work with [LucidChart](https://www.lucidchart.com/pages/landing?utm_source=google&utm_medium=cpc&utm_campaign=_chart_en_tier1_mixed_search_brand_exact_&km_CPC_CampaignId=1490375427&km_CPC_AdGroupID=55688909257&km_CPC_Keyword=lucidchart&km_CPC_MatchType=e&km_CPC_ExtensionID=&km_CPC_Network=g&km_CPC_AdPosition=&km_CPC_Creative=442433236007&km_CPC_TargetID=kwd-33511936169&km_CPC_Country=9046005&km_CPC_Device=c&km_CPC_placement=&km_CPC_target=&gclid=Cj0KCQjw_O2lBhCFARIsAB0E8B_BaaAGk7Ben2kChMf8S1KV5f3g7B3NYORCOd_w1lS_bkhpwTGKf1caAl4VEALw_wcB)
 
-[Flowchart](md_images/flowcharts.png)
+![Flowchart](md_images/Flowcharts.png)
 
 I used this as a floor plan for the app, and then added and removed features where appropriate.
 
 ### Finished program
 ---
+
+![Welcome](md_images/welcome.png)
 
 The user is first given the option between adding to the current database and updating the seat bookings for each venue, or displaying a current dataset instead. 
 If the user decides to add to the current data, this will automatically update the data file and automatically calculate and update the remaining seats for each venue from the data added. 
@@ -46,17 +44,26 @@ Lastly, the user is given the option to check each venue's current average booki
     - User input validation, returns error, what user typed and what counts as valid input
     - Program will return same error messages until the user inputs the correct data type
 
+    ![Validation](md_images/valid.png)
+
  - Updates external google sheet with user inputs (booking datasets for individual venues)
     - Automatically calculates remaining seats from input dataset
     - Automatically updates seperate sheet in the spreadsheet for remaining seats
+
+    ![Update](md_images/update.png)
 
  - User is given the option on what data they would like to pull from the external file as well as how much data
     - User is given the option to pick a specific dataset to pull from the spreadsheet if they prefer
     - Program can display any value in the spreadsheet
 
+    ![Choice](md_images/1.png)
+    ![Display](md_images/display.png)
+
  - User is given the option to review mean average of each venue
 
  - User has the option to input to go back to the beginning of the program, or exit the program after each task
+
+    ![DataPull](md_images/4.png)
 
  ### Future Features
 
@@ -125,7 +132,3 @@ This project was deployed using Code Institute's mock terminal on Heroku
 ---
 
  - Code institute for the deployment terminal
- - Google spreadsheets / cloud for the external tools / API
- - Google for inspiration on various business apps
- - LucidCharts for the flowchart creation
- - PEP8 checker for code validation

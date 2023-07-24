@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "venue-booker-pp3",
+  "private_key_id": "ef734901db25350c6638e07890e142dea58db0a4",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCyuWnZcldJFYZi\ntRrsL5JBz0sgOuyWLxiFFtQ0w91Yc1VVlHwBhjWvQsPGs7zbtFN/q2HtfzSMKD9X\nuzRIhUH5QDn3614jcOvmPkFcXlaQiEydjB2+6dCSTJJl92kYoA/l6VtzUiPQuhtc\ng6R4xcBdT0sbEMZsSGxBjqkLZrsr/Y/m75aK2sNHDfvOq6YIUPsunYDgvyROCqUV\n7g2kF0lqghNINzj7YnLIMAre3fJ9MevJro3akKuumK2i5hZa0cWBkWfIbYWPbydg\nKeQfpvd3ytdBZFh7DNDhfgneNBxi3s1DVC+06NxM/LzDhtvQ+mE60uHLwcraRqpo\nQHKM5c93AgMBAAECggEAANuhzD85RHElaQBKwpfj3gvOf4QcGKIQ193pMBIOOo6r\nLTL+RjLMiF/YrFgc78ao0/PdqRQAPsZlFdjtm+xP1pBEkJHnrMhHYzgo4vZs+Fql\ni4Gqe7BU2Pu9hCtkEymWVsAAOWIYKLgllq2AstFRzODeXaEYYr972lpPkDql0V5v\nLnAbX62Taqph4ZzS8vNqU+x3I7IdMJq+q5cykHbuFEoFCt3DdpfeyzgocxFqEpfp\n9i1mD/K6bWSBO2XRSudAib0W5OpsKscdwWgsdaLrwupI0OxfAcFIn3eowQ5kNnqj\n1CPucVLOHuA3s4bgzsNMNkxxOtexwa7aOV3um8kYkQKBgQDYpOMz+0J5Qxs/D/XE\nI6ZAVpR0GvRxyz41rqMVNvO7vBP1yEiqv5Q6tC0ouwbFv45/104itviYpr7WJSn7\nbpumxejQtjE6JhKe1zntWLjENhnWeQMuxNE5riCUtm6LWlHO8Au2Aga7RDyJVr3O\n1jt5qh0/sjYw41sPCu2As5UP7wKBgQDTMQ0GyMKGr6V53D6e3LipesmHBtjJXJs5\nlkV5RVoegpIjSeUsdU8f6zN9DaezfQn9CtIlXTbFoLmZE2vMN8VNnI041j/4aSGC\nvRLmfoY1BHYlEaAz3LrgUERgji74UegLMsQtKc/dl13rsvIdtX4m4GkzXPvlqPUf\nLF9/BFuw+QKBgHzLvvWar1gbB/7zuqcZwhMdzLZ1MIq8gUF7MAZweUaTuQvEK9fw\nM/r8/2aPFf+jsPqDlEb7D4kfxJ6nGd/0f0U6jDpuOT094UwOvxeyG/0rDQc2/lZa\nmguX+ryvuk4b4TRLovNdh3Mog5a5mO0lC22ySNcAWacf0LyBlv6kdCGRAoGBAMbf\nP9cNojDWokq4nbdXPgVKfQ/L4MTtkbaOzWk/Z3enmRnl8gsFhLcX8uplu3AH5SoF\n0JIizvsXOO7vHOm38vH84/eLub2gsk+84Flw98xhISgTCvsLdmbY7yrFeXGZH5u7\n+IRXBUkzytuzLM/RIrRVSnt1qjc//WOXk222mulxAoGAR9iBwEbCiOhpkGWFWwYA\nj9BQcj0ZhZiNQBJ5kKRoChqm4SMizbKq2raOn2EPSTU7hvYDpSx+XXtpAM76QFvX\n+l0yvAdL3WRhZXYmgwOB35mQTWW4loMB7AmWOS8XFPMdUJhZTX2/hdicDJLx1UGr\nJxj3tj4kXrCojTXSoI6K1mw=\n-----END PRIVATE KEY-----\n",
+  "client_email": "l-wbns@venue-booker-pp3.iam.gserviceaccount.com",
+  "client_id": "103147778333358646966",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/l-wbns%40venue-booker-pp3.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
